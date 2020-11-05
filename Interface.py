@@ -3,7 +3,8 @@
 # Autor:	Cristian Cala Sierra
 
 import sys
-from PyQt5 import QtGui, QtWidgets
+from math import *
+from PyQt5 import QtGui, QtWidgets, QtCore
 from PyQt5.QtGui import (QFont, QIcon, QPalette, QBrush, QColor, QPixmap, QRegion, QClipboard,
 						 QRegExpValidator, QImage)
 from PyQt5.QtCore import (Qt, QDir, pyqtSignal, QFile, QByteArray,QIODevice,QBuffer,QDate, QTime, QSize, QTimer, QRect, QRegExp, QTranslator,QLocale,
@@ -45,8 +46,8 @@ class Interface(QMainWindow):
 				"background-color: rgba(255,255,255,1);\n"
 				"border-radius: 10px;\n"
 				"}")
-		frame_3 = ("QFrame{\n"
-				"color:#1b231f;\n"
+		frame_pantalla = ("QLineEdit{\n"
+				"color:white;\n"
 				"background-color: rgba(0,0,0,0.8);\n"
 				"border-radius: 10px;\n"
 				"}")
@@ -130,10 +131,15 @@ class Interface(QMainWindow):
 		self.acercaDe.setStyleSheet(botonCierre)
 
 		# botones del contenido numérico#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
-		self.frame_pantalla = QFrame(self.frame_principal)
+		self.frame_pantalla = QtWidgets.QLineEdit(self.frame_principal)
 		self.frame_pantalla.setGeometry(QRect(40,40,520,120))
-		self.frame_pantalla.setStyleSheet(frame_3)
+		self.frame_pantalla.setStyleSheet(frame_pantalla)
 		self.frame_pantalla.move(45, 10)
+		self.frame_pantalla.setFont(QtGui.QFont("Roboto", 50, QtGui.QFont.Bold))
+		self.frame_pantalla.setReadOnly(True)
+		self.frame_pantalla.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
+		self.frame_pantalla.setMaxLength(100)
+		self.frame_pantalla.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
 		self.sombra_3 = QGraphicsDropShadowEffect()
 		self.sombra_3.setBlurRadius(22)
 		self.frame_pantalla.setGraphicsEffect(self.sombra_3)
@@ -416,8 +422,52 @@ class Interface(QMainWindow):
 		self.botonCerrar.clicked.connect(self.closeButton)
 		self.botonMinimizar.clicked.connect(self.minimize)
 
+		#Pad de Botones
+
+		self.boton_Nro1.clicked.connect(lambda:self.frame_pantalla.insert('1'))
+		self.boton_Nro2.clicked.connect(lambda:self.frame_pantalla.insert('2'))
+		self.boton_Nro3.clicked.connect(lambda:self.frame_pantalla.insert('3'))
+		self.boton_Nro4.clicked.connect(lambda:self.frame_pantalla.insert('4'))
+		self.boton_Nro5.clicked.connect(lambda:self.frame_pantalla.insert('5'))
+		self.boton_Nro6.clicked.connect(lambda:self.frame_pantalla.insert('6'))
+		self.boton_Nro7.clicked.connect(lambda:self.frame_pantalla.insert('7'))
+		self.boton_Nro8.clicked.connect(lambda:self.frame_pantalla.insert('8'))
+		self.boton_Nro9.clicked.connect(lambda:self.frame_pantalla.insert('9'))
+		self.boton_Nro0.clicked.connect(lambda:self.frame_pantalla.insert('0'))
+
+		self.boton_Point.clicked.connect(lambda:self.frame_pantalla.insert('.'))
+		self.boton_Equal.clicked.connect(lambda:self.evaluacion())
+		self.boton_Clear.clicked.connect(lambda:self.frame_pantalla.backspace())
+		self.boton_Clear2.clicked.connect(lambda:self.frame_pantalla.clear())
+
+		self.boton_suma.clicked.connect(lambda:self.frame_pantalla.insert('+'))
+		self.boton_Resta.clicked.connect(lambda:self.frame_pantalla.insert('-'))
+		self.boton_Divide.clicked.connect(lambda:self.frame_pantalla.insert('/'))
+		self.boton_X.clicked.connect(lambda:self.frame_pantalla.insert('*'))
+		self.boton_parent.clicked.connect(lambda:self.frame_pantalla.insert('('))
+		self.boton_parent2.clicked.connect(lambda:self.frame_pantalla.insert(')'))
+
+		self.seno.clicked.connect(lambda:self.frame_pantalla.insert('sin('))
+		self.coseno.clicked.connect(lambda:self.frame_pantalla.insert('cos('))
+		self.tangente.clicked.connect(lambda:self.frame_pantalla.insert('tan('))
+		self.arcsen.clicked.connect(lambda:self.frame_pantalla.insert('asin('))
+		self.arccos.clicked.connect(lambda:self.frame_pantalla.insert('acos('))
+		self.arctang.clicked.connect(lambda:self.frame_pantalla.insert('atan('))
+		self.raiz.clicked.connect(lambda:self.frame_pantalla.insert('ELpepe'))
+
+
 
 	# Lógica#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+	def evaluacion(self):
+		try:
+			pantalla = self.frame_pantalla.text()
+			self.resultado = eval(pantalla)
+
+			self.frame_pantalla.setText(str(self.resultado))
+		except:
+			self.frame_pantalla.setText('SINTAXIS ERROR')
+
+
 	def closeButton(self):
 		
 		exit = QMessageBox(self)
@@ -426,9 +476,9 @@ class Interface(QMainWindow):
 		exit.setText("¿Estás seguro que desea cerrar esta ventana?")
 		buttonExit = exit.addButton("Salir", QMessageBox.YesRole)
 		botonCancelar = exit.addButton("Cancelar", QMessageBox.NoRole)
-            
+			
 		exit.exec_()
-            
+			
 		if exit.clickedButton() == buttonExit:
 			self.destroy()
 		else:
