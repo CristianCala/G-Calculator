@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+# ----------------------------------------------------------------------------
+# Autor:	Cristian Cala Sierra
+
 import sys
 from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtGui import (QFont, QIcon, QPalette, QBrush, QColor, QPixmap, QRegion, QClipboard,
@@ -12,8 +16,6 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QDialog, QTable
 							 QDateEdit, QComboBox, QCheckBox, QTextEdit, QRadioButton, QScrollArea, QFileDialog,QGraphicsEffect, QVBoxLayout, 
 							 QGraphicsDropShadowEffect, QGraphicsBlurEffect,)
 
-# Calculadora hecha por Cristian Cala
-
 
 class Interface(QMainWindow):
 	def __init__(self, parent=None):
@@ -21,7 +23,7 @@ class Interface(QMainWindow):
 		self.setWindowIcon(QIcon(""))
 		self.setWindowTitle("G-Calculator")
 		self.setWindowFlags(Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint)
-		self.setFixedSize(750, 650)
+		self.setFixedSize(670, 650)
 		self.setWindowFlags((Qt.FramelessWindowHint))
 		self.setStyleSheet("QMainWindow{\n"
 		"background-color: qlineargradient(spread:pad, x1:0.063, y1:0.346591, x2:0.982955, y2:0.477, stop:0 rgba(220,20,60,1), stop:1 rgba(102,0,0,1));\n"
@@ -86,15 +88,15 @@ class Interface(QMainWindow):
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
 		self.frame_principal = QFrame(self)
-		self.frame_principal.setGeometry(QRect(30,120,690,500))
+		self.frame_principal.setGeometry(QRect(30,120,610,500))
 		self.frame_principal.setStyleSheet(frame)
 		self.frame_principal.move(30, 100)
 
-		# Label y fram del encabezado
+		# Label y frame del encabezado
 		self.frame_titulo = QFrame(self)
 		self.frame_titulo.setGeometry(QRect(30,30,135,50))
 		self.frame_titulo.setStyleSheet(frame_2)
-		self.frame_titulo.move(310,20)
+		self.frame_titulo.move(268,20)
 		self.sombra_2 = QGraphicsDropShadowEffect()
 		self.sombra_2.setBlurRadius(23)
 		self.frame_titulo.setGraphicsEffect(self.sombra_2)
@@ -104,7 +106,7 @@ class Interface(QMainWindow):
 		self.Label.setText("G-Calculator")
 		self.Label.setStyleSheet(label_titulo)
 		self.Label.setFont(QtGui.QFont("Lobster", 17, QtGui.QFont.Bold))
-		self.Label.move(320, 20)
+		self.Label.move(280, 20)
 		self.sombra  = QGraphicsDropShadowEffect()        
 		self.sombra.setBlurRadius(22)
 		self.Label.setGraphicsEffect(self.sombra)
@@ -112,13 +114,13 @@ class Interface(QMainWindow):
 		self.botonCerrar = QPushButton(self)
 		self.botonCerrar.setGeometry(QRect(30,30,40,30))
 		self.botonCerrar.setIcon(QIcon("icons/close.svg"))
-		self.botonCerrar.move(700,10)
+		self.botonCerrar.move(590,10)
 		self.botonCerrar.setStyleSheet(botonCierre)
 
 		self.botonMinimizar = QPushButton(self)
 		self.botonMinimizar.setIcon(QIcon("icons/shuffle.svg"))
 		self.botonMinimizar.setGeometry(QRect(30,30,30,30))
-		self.botonMinimizar.move(650,10)
+		self.botonMinimizar.move(560,10)
 		self.botonMinimizar.setStyleSheet(botonCierre)
 
 		self.acercaDe = QPushButton(self)
@@ -129,7 +131,7 @@ class Interface(QMainWindow):
 
 		# botones del contenido numérico#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 		self.frame_pantalla = QFrame(self.frame_principal)
-		self.frame_pantalla.setGeometry(QRect(40,40,600,120))
+		self.frame_pantalla.setGeometry(QRect(40,40,520,120))
 		self.frame_pantalla.setStyleSheet(frame_3)
 		self.frame_pantalla.move(45, 10)
 		self.sombra_3 = QGraphicsDropShadowEffect()
@@ -335,6 +337,75 @@ class Interface(QMainWindow):
 		self.sombra_20 = QGraphicsDropShadowEffect()
 		self.sombra_20.setBlurRadius(22)
 		self.boton_parent2.setGraphicsEffect(self.sombra_20)
+
+		self.seno = QPushButton(self.frame_principal)
+		self.seno.setGeometry(QRect(40,40,50,50))
+		self.seno.setStyleSheet(botonStandar)
+		self.seno.setFont(QtGui.QFont("Lobster", 14, QtGui.QFont.Bold))
+		self.seno.setText("Sen")
+		self.seno.move(390,160)
+		self.sombra_21 = QGraphicsDropShadowEffect()
+		self.sombra_21.setBlurRadius(22)
+		self.seno.setGraphicsEffect(self.sombra_21)
+
+		self.coseno = QPushButton(self.frame_principal)
+		self.coseno.setGeometry(QRect(40,40,50,50))
+		self.coseno.setStyleSheet(botonStandar)
+		self.coseno.setFont(QtGui.QFont("Lobster", 14, QtGui.QFont.Bold))
+		self.coseno.setText("Cos")
+		self.coseno.move(450,160)
+		self.sombra_22 = QGraphicsDropShadowEffect()
+		self.sombra_22.setBlurRadius(22)
+		self.coseno.setGraphicsEffect(self.sombra_22)
+
+		self.tangente = QPushButton(self.frame_principal)
+		self.tangente.setGeometry(QRect(40,40,50,50))
+		self.tangente.setStyleSheet(botonStandar)
+		self.tangente.setFont(QtGui.QFont("Lobster", 14, QtGui.QFont.Bold))
+		self.tangente.setText("Tan")
+		self.tangente.move(510,160)
+		self.sombra_23 = QGraphicsDropShadowEffect()
+		self.sombra_23.setBlurRadius(22)
+		self.tangente.setGraphicsEffect(self.sombra_23)
+
+		self.arcsen = QPushButton(self.frame_principal)
+		self.arcsen.setGeometry(QRect(40,40,50,50))
+		self.arcsen.setStyleSheet(botonStandar)
+		self.arcsen.setFont(QtGui.QFont("Lobster", 12, QtGui.QFont.Bold))
+		self.arcsen.setText("ArcSen")
+		self.arcsen.move(390,220)
+		self.sombra_24 = QGraphicsDropShadowEffect()
+		self.sombra_24.setBlurRadius(22)
+		self.arcsen.setGraphicsEffect(self.sombra_24)
+
+		self.arccos = QPushButton(self.frame_principal)
+		self.arccos.setGeometry(QRect(40,40,50,50))
+		self.arccos.setStyleSheet(botonStandar)
+		self.arccos.setFont(QtGui.QFont("Lobster", 12, QtGui.QFont.Bold))
+		self.arccos.setText("ArcCos")
+		self.arccos.move(450,220)
+		self.sombra_25 = QGraphicsDropShadowEffect()
+		self.sombra_25.setBlurRadius(22)
+		self.arccos.setGraphicsEffect(self.sombra_25)
+
+		self.arctang = QPushButton(self.frame_principal)
+		self.arctang.setGeometry(QRect(40,40,50,50))
+		self.arctang.setStyleSheet(botonStandar)
+		self.arctang.setFont(QtGui.QFont("Lobster", 12, QtGui.QFont.Bold))
+		self.arctang.setText("ArcTan")
+		self.arctang.move(510,220)
+		self.sombra_26 = QGraphicsDropShadowEffect()
+		self.sombra_26.setBlurRadius(22)
+		self.arctang.setGraphicsEffect(self.sombra_26)
+
+		self.raiz = QPushButton(self.frame_principal)
+		self.raiz.setGeometry(QRect(40,40,50,50))
+		self.raiz.setStyleSheet(botonStandar)
+		self.raiz.setText("ELpepe")
+		self.raiz.move(390,280)
+		self.sombra_27 = QGraphicsDropShadowEffect()
+		self.sombra_27.setBlurRadius(22)
+		self.raiz.setGraphicsEffect(self.sombra_27)
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
