@@ -11,9 +11,9 @@ Calculadora secreta y calculadora científica, ideal para ocultar ciertas cosas 
 ```
 ## Screenshots
 
-![imagen1](https://github.com/CristianCala/G-Calculator/Screenshots/Calculator1.png)
-![imagen1](https://github.com/CristianCala/G-Calculator/Screenshots/Calculator2.png)
-![imagen1](https://github.com/CristianCala/G-Calculator/Screenshots/Calculator3.png)
+![imagen1](https://github.com/CristianCala/G-Calculator/blob/master/Screenshots/Calculator1.png)
+![imagen1](https://github.com/CristianCala/G-Calculator/blob/master/Screenshots/Calculator2.png)
+![imagen1](https://github.com/CristianCala/G-Calculator/blob/master/Screenshots/Calculator3.png)
 
 
 ## Licencia 📄
